@@ -11,7 +11,6 @@ export default async function handler(req, res) {
     apiKey: process.env.ALCHEMY_API_KEY,
     network: Network[chain],
   };
-  console.log(settings);
 
   const alchemy = new Alchemy(settings);
 

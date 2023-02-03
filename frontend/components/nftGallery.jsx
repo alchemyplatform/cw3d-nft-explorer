@@ -25,14 +25,12 @@ export default function NFTGallery({}) {
         chain: chain,
       }),
     }).then((res) => res.json());
-    console.log(res);
     setNfts(res.nfts);
     if (res.pageKey) {
       setPageKey(res.pageKey);
     } else {
         setPageKey()
     }
-    console.log(res);
     setIsloading(false);
   };
 

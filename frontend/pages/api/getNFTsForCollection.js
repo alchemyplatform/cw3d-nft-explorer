@@ -11,7 +11,6 @@ export default async function handler(req, res) {
     apiKey: process.env.ALCHEMY_API_KEY,
     network: Network[chain],
   };
-    console.log(settings)
   const alchemy = new Alchemy(settings);
 
   try {
@@ -19,7 +18,6 @@ export default async function handler(req, res) {
       excludeFilters: [NftFilters.SPAM],
       pageKey: pageKey ? pageKey : null,
     });
-    console.log(NFTs.pageKey);
     const formattedNFTs = NFTs.nfts.map((NFT) => {
       const { contract, title, tokenType, tokenId, description } = NFT;
 
