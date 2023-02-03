@@ -1,0 +1,183 @@
+
+.nft_gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1224px;
+    align-items: center;
+    padding: 0 1.5rem
+}
+
+.inputs_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-self: center;
+    row-gap: 1.5rem;
+}
+
+.input_button_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.input_button_container input{
+    width: 30%;
+    padding: .3rem 1rem;
+    outline: none;
+    border: none;
+  border-bottom: 2px solid rgba(0, 98, 255, 0.214);
+
+ 
+}
+
+.input_button_container select{
+    width: 10%;
+    text-align: center;
+    padding: .5rem 1rem;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(0, 98, 255);
+    color: white;
+    cursor: pointer;
+}
+
+.radios_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.radios_container label{
+   gap: .2rem;
+   display: flex;
+}
+
+.nfts_display{
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%;
+    gap: 1rem;
+    justify-content: center;
+    margin: 6rem 0 3rem 0;
+}
+
+.card_container{
+    width: 26%;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.074);
+
+}
+
+
+.image_container{
+ height: 160px;
+ width: 100%;
+ border-radius: 8px 8px 0 0;
+}
+
+.image_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+
+}
+
+.info_box{
+    background-color: rgb(244, 244, 244);
+    border-radius: 0 0 6px 6px;
+    padding: .7rem 1rem 1rem 1rem;
+    height: 10.3rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    row-gap: .25rem;
+}
+
+
+.title_id_container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: .2rem;
+   
+}
+.title_id_container h3{
+   font-weight: 600;
+   font-size: 1rem;
+}
+
+.title_id_container p{
+    background-color: white;
+    padding: .05rem .4rem;
+    border-radius: 6px;
+    border: 2px solid rgb(227, 227, 227);
+
+}
+
+
+
+.address_container{
+    font-size: .9rem;
+  
+}
+
+.address_container a {
+    cursor: pointer;
+}
+
+.description_container{
+    margin: .2rem 0;
+    font-size: .9rem;
+}
+
+.buttons_container{
+    display: flex;
+    gap: 1rem;
+    width: 30%;
+    justify-content: center;
+}
+
+
+.button{
+    background-color: rgb(0, 98, 255);
+    padding: .5rem 2rem;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 992px){
+    .card_container{
+        width: 30%;
+    
+    } 
+}
+@media screen and (max-width: 750px){
+    .card_container{
+        width: 40%;
+
+    
+    } 
+}
+@media screen and (max-width: 560px){
+    .nfts_display{
+       
+        max-width: 100%;
+      
+    }
+   
+    .card_container{
+        width: 80%;
+    } 
+}
