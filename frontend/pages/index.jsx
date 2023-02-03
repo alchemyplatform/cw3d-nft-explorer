@@ -1,5 +1,4 @@
 import styles from "../styles/Home.module.css";
-import Panels from "../components/panels";
 import NFTGallery from "../components/nftGallery";
 
 export default function Home() {
