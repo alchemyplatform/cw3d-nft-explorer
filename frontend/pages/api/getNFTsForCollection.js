@@ -1,49 +1,50 @@
-import { Network, Alchemy, NftFilters } from "alchemy-sdk";
+import { Network, Alchemy } from "alchemy-sdk";
 
 export default async function handler(req, res) {
-  const { address, pageKey, chain } = JSON.parse(req.body);
-  if (req.method !== "POST") {
-    res.status(405).send({ message: "Only POST requests allowed" });
-    return;
-  }
+	const { address, pageKey, pageSize, chain, excludeFilters } = JSON.parse(
+		req.body
+	);
+	console.log(address);
+	if (req.method !== "POST") {
+		res.status(405).send({ message: "Only POST requests allowed" });
+		return;
+	}
+	console.log(chain);
+	const settings = {
+		apiKey: process.env.ALCHEMY_API_KEY,
+		network: Network[chain],
+	};
+	const alchemy = new Alchemy(settings);
 
-  const settings = {
-    apiKey: process.env.ALCHEMY_API_KEY,
-    network: Network[chain],
-  };
-  const alchemy = new Alchemy(settings);
+	try {
+		const nfts = await alchemy.nft.getNftsForContract(address, {
+			pageKey: pageKey ? pageKey : null,
+			pageSize: pageSize ? pageSize : null,
+			excludeFilters: excludeFilters && [NftFilters.SPAM],
+		});
+		const formattedNfts = nfts.nfts.map((nft) => {
+			const { contract, title, tokenType, tokenId, description } = nft;
 
-  try {
-    const NFTs = await alchemy.nft.getNftsForContract(address, {
-      excludeFilters: [NftFilters.SPAM],
-      pageKey: pageKey ? pageKey : null,
-    });
-    const formattedNFTs = NFTs.nfts.map((NFT) => {
-      const { contract, title, tokenType, tokenId, description } = NFT;
+			return {
+				contract: contract.address,
+				symbol: contract.symbol,
+				media: contract.openSea?.imageUrl,
+				tokenType,
+				tokenId,
+				title,
+				description,
+			};
+		});
 
-      return {
-        contract: contract.address,
-        symbol: contract.symbol,
-        media: contract.openSea?.imageUrl,
-        tokenType,
-        tokenId,
-        title,
-        description,
-      };
-    });
-    const filteredNFTs = formattedNFTs.filter(
-      (nft) => nft.title.length && nft.description.length && nft.media
-    );
-
-      res.status(200).json({
-          nfts: filteredNFTs,
-          pageKey: NFTs.pageKey
-      });
-    // the rest of your code
-  } catch (e) {
-    console.warn(e);
-    res.status(500).send({
-      message: "something went wrong, check the log in your terminal",
-    });
-  }
+		res.status(200).json({
+			nfts: formattedNfts,
+			pageKey: nfts.pageKey,
+		});
+		// the rest of your code
+	} catch (e) {
+		console.warn(e);
+		res.status(500).send({
+			message: "something went wrong, check the log in your terminal",
+		});
+	}
 }
