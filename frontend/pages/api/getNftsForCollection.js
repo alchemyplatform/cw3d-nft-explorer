@@ -1,7 +1,7 @@
 import { Network, Alchemy } from "alchemy-sdk";
 
 export default async function handler(req, res) {
-	const { address, pageKey, pageSize, chain, excludeFilters } = JSON.parse(
+	const { address, pageKey, pageSize, chain } = JSON.parse(
 		req.body
 	);
 	if (req.method !== "POST") {
