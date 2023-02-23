@@ -4,7 +4,6 @@ export default async function handler(req, res) {
 	const { address, pageKey, pageSize, chain, excludeFilters } = JSON.parse(
 		req.body
 	);
-	console.log(address);
 	if (req.method !== "POST") {
 		res.status(405).send({ message: "Only POST requests allowed" });
 		return;
@@ -20,15 +19,19 @@ export default async function handler(req, res) {
 		const nfts = await alchemy.nft.getNftsForContract(address, {
 			pageKey: pageKey ? pageKey : null,
 			pageSize: pageSize ? pageSize : null,
-			excludeFilters: excludeFilters && [NftFilters.SPAM],
 		});
 		const formattedNfts = nfts.nfts.map((nft) => {
-			const { contract, title, tokenType, tokenId, description } = nft;
+			const { contract, title, tokenType, tokenId, description, media } =
+				nft;
 
 			return {
 				contract: contract.address,
 				symbol: contract.symbol,
-				media: contract.openSea?.imageUrl,
+				media: media[0]?.gateway
+					? media[0]?.gateway
+					: "https://via.placeholder.com/500",
+				collectionName: contract.openSea?.collectionName,
+				verified: contract.openSea?.safelistRequestStatus,
 				tokenType,
 				tokenId,
 				title,
