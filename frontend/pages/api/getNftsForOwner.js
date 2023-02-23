@@ -42,8 +42,10 @@ export default async function handler(req, res) {
 				description,
 			};
 		});
-
-		res.status(200).json({ nfts: formattedNfts, pageKey: nfts.pageKey });
+const filteredNfts = formattedNfts.filter(
+      (nft) => nft.title.length && nft.description.length && nft.media
+    );
+		res.status(200).json({ nfts: filteredNfts, pageKey: nfts.pageKey });
 	} catch (e) {
 		console.warn(e);
 		res.status(500).send({
