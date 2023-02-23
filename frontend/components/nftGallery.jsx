@@ -10,29 +10,11 @@ export default function NFTGallery({}) {
 		useState("vitalik.eth");
 	const [fetchMethod, setFetchMethod] = useState("wallet");
 	const [pageKey, setPageKey] = useState(false);
-	const [spamFilter, setSpamFilter] = useState(false);
+	const [spamFilter, setSpamFilter] = useState(true);
 	const [isLoading, setIsloading] = useState(false);
 	const { address, isConnected } = useAccount();
 	const [chain, setChain] = useState("eth-mainnet");
-	const Input = () => {
-		const handleKeyDown = (event) => {
-			if (event.key === "Enter") {
-				fetchNFTs();
-			}
-		};
-
-		return (
-			<input
-				value={walletOrCollectionAddress}
-				onKeyDown={handleKeyDown}
-				onChange={(e) => {
-					setWalletOrCollectionAddress(e.target.value);
-				}}
-				placeholder="Insert NFTs contract or wallet address"
-			></input>
-		);
-	};
-
+	
 	const changeFetchMethod = (e) => {
 		switch (e.target.value) {
 			case "wallet":
@@ -95,6 +77,7 @@ export default function NFTGallery({}) {
 					<h2 style={{ fontSize: "20px" }}>Explore NFTs by</h2>
 					<div className={styles.select_container}>
 						<select
+							defaultValue={"wallet"}
 							onChange={(e) => {
 								changeFetchMethod(e);
 							}}
@@ -109,17 +92,21 @@ export default function NFTGallery({}) {
 				</div>
 				<div className={styles.inputs_container}>
 					<div className={styles.input_button_container}>
-						<Input></Input>
-
+					<input
+				value={walletOrCollectionAddress}
+				onChange={(e) => {
+					setWalletOrCollectionAddress(e.target.value);
+				}}
+				placeholder="Insert NFTs contract or wallet address"
+			></input>
 						<div className={styles.select_container_alt}>
 							<select
 								onChange={(e) => {
 									setChain(e.target.value);
 								}}
+								defaultValue={"ETH_MAINNET"}
 							>
-								<option selected={true} value={"ETH_MAINNET"}>
-									Mainnet
-								</option>
+								<option value={"ETH_MAINNET"}>Mainnet</option>
 								<option value={"MATIC_MAINNET"}>Polygon</option>
 								<option value={"ETH_GOERLI"}>Goerli</option>
 								<option value={"MATIC_MUMBAI"}>Mumbai</option>
@@ -141,30 +128,32 @@ export default function NFTGallery({}) {
 				</div>
 			) : (
 				<div className={styles.nft_gallery}>
-					{nfts?.length && (
-						<div
-							style={{
-								display: "flex",
-								gap: ".5rem",
-								width: "100%",
-								justifyContent: "end",
-							}}
-						>
-							<p>Hide spam</p>
-							<label className={styles.switch}>
-								<input
-									onChange={(e) =>
-										setSpamFilter(e.target.checked)
-									}
-									checked={spamFilter}
-									type="checkbox"
-								/>
-								<span
-									className={`${styles.slider} ${styles.round}`}
-								></span>
-							</label>
-						</div>
-					)}
+					{(nfts?.length &&
+						fetchMethod !=
+							"collection")&&(
+								<div
+									style={{
+										display: "flex",
+										gap: ".5rem",
+										width: "100%",
+										justifyContent: "end",
+									}}
+								>
+									<p>Hide spam</p>
+									<label className={styles.switch}>
+										<input
+											onChange={(e) =>
+												setSpamFilter(e.target.checked)
+											}
+											checked={spamFilter}
+											type="checkbox"
+										/>
+										<span
+											className={`${styles.slider} ${styles.round}`}
+										></span>
+									</label>
+								</div>
+							)}
 
 					<div className={styles.nfts_display}>
 						{nfts?.length ? (
