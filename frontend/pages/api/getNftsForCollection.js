@@ -38,12 +38,12 @@ export default async function handler(req, res) {
 				description,
 			};
 		});
-		 const filteredNFTs = formattedNFTs.filter(
+		 const filteredNfts = formattedNfts.filter(
       (nft) => nft.title.length && nft.description.length && nft.media
     );
 
 		res.status(200).json({
-			nfts: filteredNFTs,
+			nfts: filteredNfts,
 			pageKey: nfts.pageKey,
 		});
 		// the rest of your code
