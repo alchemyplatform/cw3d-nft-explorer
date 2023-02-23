@@ -1,10 +1,9 @@
 import { Network, Alchemy, NftFilters } from "alchemy-sdk";
 
-export default async function handler(
-	req,
-	res
-) {
-	const { address, pageSize, chain, excludeFilter,pageKey } = JSON.parse(req.body);
+export default async function handler(req, res) {
+	const { address, pageSize, chain, excludeFilter, pageKey } = JSON.parse(
+		req.body
+	);
 	console.log(chain);
 	if (req.method !== "POST") {
 		res.status(405).send({ message: "Only POST requests allowed" });
@@ -21,18 +20,20 @@ export default async function handler(
 	try {
 		const nfts = await alchemy.nft.getNftsForOwner(address, {
 			pageSize: pageSize ? pageSize : 100,
-      excludeFilters: excludeFilter && [NftFilters.SPAM],
-      pageKey: pageKey ? pageKey :""
+			excludeFilters: excludeFilter && [NftFilters.SPAM],
+			pageKey: pageKey ? pageKey : "",
 		});
 
 		const formattedNfts = nfts.ownedNfts.map((nft) => {
-			const { contract, title, tokenType, tokenId, description } = nft;
+			const { contract, title, tokenType, tokenId, description, media } =
+				nft;
 
 			return {
 				contract: contract.address,
 				symbol: contract.symbol,
-				media: contract.openSea?.imageUrl
-					? contract.openSea?.imageUrl
+				collectionName: contract.openSea?.collectionName,
+				media: media[0]?.gateway
+					? media[0]?.gateway
 					: "https://via.placeholder.com/500",
 				verified: contract.openSea?.safelistRequestStatus,
 				tokenType,
