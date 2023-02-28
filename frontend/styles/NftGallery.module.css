@@ -190,7 +190,7 @@ width: 528px;
   .symbol_contract_container{
     display: flex; 
     justify-content: space-between;
-    align-items: center;
+    align-items: center;  
   }
   
   .contract_container{
@@ -198,7 +198,7 @@ width: 528px;
     column-gap: .3rem;
     font-size: 12px;
     cursor: pointer;
-  
+    align-items: center;
   }
   
   .title_container {
