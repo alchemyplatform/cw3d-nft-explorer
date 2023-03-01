@@ -184,15 +184,12 @@ function NftCard({ nft }) {
 	return (
 		<div className={styles.card_container}>
 			<div className={styles.image_container}>
-				{nft.format == "png" ||
-				nft.format == "jpg" ||
-				nft.format == "jpeg" ||
-				nft.format == "gif" ? (
-					<img src={nft.media}></img>
-				) : (
+				{nft.format == "mp4" ? (
 					<video src={nft.media} controls>
 						Your browser does not support the video tag.
 					</video>
+				) : (
+					<img src={nft.media}></img>
 				)}
 			</div>
 			<div className={styles.info_container}>
