@@ -36,12 +36,14 @@ export default async function handler(req, res) {
         format: media[0]?.format ? media[0]?.format : "png",
       };
     });
+
+  
     const filteredNfts = formattedNfts.filter(
       (nft) => nft.title.length && nft.description.length && nft.media
     );
-
+      
     res.status(200).json({
-      nfts: filteredNfts,
+      nfts: filteredNfts.length ? filteredNfts : null,
       pageKey: nfts.pageKey,
     });
     // the rest of your code
