@@ -211,19 +211,23 @@ function NftCard({ nft }) {
 							/>
 						) : null}
 					</div>
-					<div className={styles.contract_container}>
-						<p className={styles.contract_container}>
-							{nft.contract.slice(0, 6)}...
-							{nft.contract.slice(38)}
-						</p>
-						<img
-							src={
-								"https://etherscan.io/images/brandassets/etherscan-logo-circle.svg"
-							}
-							width="15px"
-							height="15px"
-						/>
-					</div>
+					<a
+            href={`https://etherscan.io/address/${nft.contract}`}
+            className={styles.contract_container}
+            target="_blank"
+          >
+            <p>
+              {nft.contract.slice(0, 6)}...
+              {nft.contract.slice(38)}
+            </p>
+            <img
+              src={
+                "https://etherscan.io/images/brandassets/etherscan-logo-circle.svg"
+              }
+              width="15px"
+              height="15px"
+            />
+          </a>
 				</div>
 
 				<div className={styles.description_container}>
