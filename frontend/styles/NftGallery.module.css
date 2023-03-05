@@ -236,16 +236,21 @@
   color: #4e4e4e;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 560px) {
+  .nfts_display {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
-@media screen and (max-width: 750px) {
+
+@media screen and (min-width: 561px) and (max-width: 750px) {
   .nfts_display {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media screen and (max-width: 560px) {
+
+@media screen and (min-width: 751px) and (max-width: 992px) {
   .nfts_display {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
