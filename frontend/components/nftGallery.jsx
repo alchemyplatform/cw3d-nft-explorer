@@ -14,6 +14,8 @@ export default function NFTGallery({}) {
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
 
   const changeFetchMethod = (e) => {
+    setNfts()
+    setPageKey()
     switch (e.target.value) {
       case "wallet":
         setWalletOrCollectionAddress("vitalik.eth");
@@ -55,7 +57,6 @@ export default function NFTGallery({}) {
         setNfts();
         setNfts(res.nfts);
       }
-
       if (res.pageKey) {
         setPageKey(res.pageKey);
       } else {
