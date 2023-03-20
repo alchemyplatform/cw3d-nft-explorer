@@ -155,8 +155,8 @@ export default function NFTGallery({}) {
 
 					<div className={styles.nfts_display}>
 						{nfts?.length ? (
-							nfts.map((nft) => {
-								return <NftCard key={nft.tokenId} nft={nft} />;
+							nfts.map((nft, index) => {
+								return <NftCard key={index} nft={nft} />;
 							})
 						) : (
 							<div className={styles.loading_box}>
