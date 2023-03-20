@@ -80,9 +80,6 @@
   .input_button_container input{
     width: 70%;
   }
-  .buttons_under_input{
-    display: flex;
-  }
 }
 
 .select_container_alt{
