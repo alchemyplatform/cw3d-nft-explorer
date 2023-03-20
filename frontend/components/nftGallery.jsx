@@ -96,25 +96,27 @@ export default function NFTGallery({}) {
 								setWalletOrCollectionAddress(e.target.value);
 							}}
 							placeholder="Insert NFTs contract or wallet address"
-						></input>
-						<div className={styles.select_container_alt}>
-							<select
-								onChange={(e) => {
-									setChain(e.target.value);
-								}}
-								defaultValue={process.env.ALCHEMY_NETWORK}
+						/>
+						<div className={styles.buttons_under_input}>
+							<div className={styles.select_container_alt}>
+								<select
+									onChange={(e) => {
+										setChain(e.target.value);
+									}}
+									defaultValue={process.env.ALCHEMY_NETWORK}
+								>
+									<option value={"ETH_MAINNET"}>Mainnet</option>
+									<option value={"MATIC_MAINNET"}>Polygon</option>
+									<option value={"ETH_GOERLI"}>Goerli</option>
+									<option value={"MATIC_MUMBAI"}>Mumbai</option>
+								</select>
+							</div>
+							<div
+								onClick={() => fetchNFTs()}
+								className={styles.button_black}
 							>
-								<option value={"ETH_MAINNET"}>Mainnet</option>
-								<option value={"MATIC_MAINNET"}>Polygon</option>
-								<option value={"ETH_GOERLI"}>Goerli</option>
-								<option value={"MATIC_MUMBAI"}>Mumbai</option>
-							</select>
-						</div>
-						<div
-							onClick={() => fetchNFTs()}
-							className={styles.button_black}
-						>
-							<a>Search</a>
+								<a>Search</a>
+							</div>
 						</div>
 					</div>
 				</div>
