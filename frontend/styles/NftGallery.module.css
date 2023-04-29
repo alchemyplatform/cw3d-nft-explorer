@@ -75,24 +75,39 @@
   border-radius: 8px;
 }
 
-.button_black {
-  text-align: center;
-  padding: 0.6rem 1rem;
-  display: flex;
-  border-radius: 3px;
-  background-color: black;
-  cursor: pointer;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
+.input_button_container input{
+    padding: .6rem 1rem;
+    outline: none;
+    border: 1px solid #CFD9F0;
+    border-radius: 8px;
+    width: 528px;
 }
 
-.select_container_alt select {
-  background-color: black;
-  outline: none;
-  border: none;
-  color: white;
+.buttons_under_input{
+  display: flex;
 }
+
+@media screen and (max-width: 750px) {
+  .input_button_container{
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+  }
+  .input_button_container input{
+    width: 70%;
+  }
+}
+
+.select_container_alt{
+    text-align: center;
+    padding: .6rem 1rem;
+    margin-right: 1rem;
+    display: flex;
+    border-radius: 3px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 8px;
+
 
 .radios_container {
   display: flex;

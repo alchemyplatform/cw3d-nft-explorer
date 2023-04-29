@@ -123,6 +123,7 @@ export default function NFTGallery({}) {
         </div>
       </div>
 
+
       {isLoading ? (
         <div className={styles.loading_box}>
           <p>Loading...</p>
@@ -150,19 +151,20 @@ export default function NFTGallery({}) {
             </div>
           )}
 
-          <div className={styles.nfts_display}>
-            {nfts?.length ? (
-              nfts.map((nft) => {
-                return <NftCard key={nft.tokenId} nft={nft} />;
-              })
-            ) : (
-              <div className={styles.loading_box}>
-                <p>No NFTs found for the selected address</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+
+					<div className={styles.nfts_display}>
+						{nfts?.length ? (
+							nfts.map((nft, index) => {
+								return <NftCard key={index} nft={nft} />;
+							})
+						) : (
+							<div className={styles.loading_box}>
+								<p>No NFTs found for the selected address</p>
+							</div>
+						)}
+					</div>
+				</div>
+			)}
 
       {pageKey && nfts?.length && (
         <div>
