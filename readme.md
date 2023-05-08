@@ -84,10 +84,7 @@ Navigate to the[docs](https://docs.alchemy.com/docs/create-web3-dapp) to learn m
 
 ## Project Structure
 
-The boilerplate consists of two main directories:
-
-- `backend`: Contains the Hardhat configuration and Solidity smart contracts.
-- `frontend`: Contains the Next.js frontend application and related components.
+The boilerplate consists of one root directory:
 
 ```
 📦root
@@ -117,4 +114,4 @@ The boilerplate consists of two main directories:
  ┗ 📜package.json
 ```
 
-Start editing the `pages/index.jsx` file in the `frontend` directory to customize the project according to your own needs!
+Start editing the `pages/index.jsx` file in the root directory to customize the project according to your own needs!
