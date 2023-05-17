@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/NftGallery.module.css";
 import { useAccount } from "wagmi";
+import styles from "../styles/NftGallery.module.css";
 
 export default function NFTGallery({}) {
   const [nfts, setNfts] = useState();
@@ -14,8 +14,8 @@ export default function NFTGallery({}) {
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
 
   const changeFetchMethod = (e) => {
-    setNfts()
-    setPageKey()
+    setNfts();
+    setPageKey();
     switch (e.target.value) {
       case "wallet":
         setWalletOrCollectionAddress("vitalik.eth");
@@ -103,7 +103,7 @@ export default function NFTGallery({}) {
               }}
               placeholder="Insert NFTs contract or wallet address"
             ></input>
-            <div className={styles.select_container_alt}>
+            <div className={styles.select_container}>
               <select
                 onChange={(e) => {
                   setChain(e.target.value);
@@ -122,7 +122,6 @@ export default function NFTGallery({}) {
           </div>
         </div>
       </div>
-
 
       {isLoading ? (
         <div className={styles.loading_box}>
@@ -151,20 +150,19 @@ export default function NFTGallery({}) {
             </div>
           )}
 
-
-					<div className={styles.nfts_display}>
-						{nfts?.length ? (
-							nfts.map((nft, index) => {
-								return <NftCard key={index} nft={nft} />;
-							})
-						) : (
-							<div className={styles.loading_box}>
-								<p>No NFTs found for the selected address</p>
-							</div>
-						)}
-					</div>
-				</div>
-			)}
+          <div className={styles.nfts_display}>
+            {nfts?.length ? (
+              nfts.map((nft, index) => {
+                return <NftCard key={index} nft={nft} />;
+              })
+            ) : (
+              <div className={styles.loading_box}>
+                <p>No NFTs found for the selected address</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {pageKey && nfts?.length && (
         <div>
