@@ -103,7 +103,7 @@ export default function NFTGallery({}) {
               }}
               placeholder="Insert NFTs contract or wallet address"
             ></input>
-            <div className={styles.select_container_alt}>
+            <div className={styles.select_container}>
               <select
                 onChange={(e) => {
                   setChain(e.target.value);
