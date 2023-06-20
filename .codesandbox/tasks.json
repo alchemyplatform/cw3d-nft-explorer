@@ -1,0 +1,13 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "npx create-web3-dapp@latest nft-explorer": {
+      "name": "npx create-web3-dapp@latest nft-explorer",
+      "command": "npx create-web3-dapp@latest nft-explorer",
+      "runAtStart": true
+    }
+  }
+}
